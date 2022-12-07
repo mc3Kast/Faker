@@ -52,7 +52,7 @@ namespace Core.Generators
         private object InitializeObject(object obj, GeneratorContext context)
         {
             obj.GetType().GetProperties(BindingFlags.Public |
-                                        BindingFlags.Instance)
+                                        BindingFlags.Instance | BindingFlags.NonPublic)
                 .Where(p => Equals(p.GetValue(obj), p.PropertyType.DefaultValue()))
                 .ForEach(property =>
                 {

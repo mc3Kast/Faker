@@ -13,11 +13,11 @@ namespace Tests
             _faker = new Faker();
         }
         private static IEnumerable<TestCaseData> _dataTypes = new List<TestCaseData>()
-    {
-        new(typeof(bool)), new(typeof(byte)), new(typeof(char)), new(typeof(DateTime)),
+        {
+        new(typeof(bool)), new(typeof(byte)), new(typeof(DateTime)),
         new(typeof(double)), new(typeof(float)), new(typeof(int)), new(typeof(List<int>)),
-        new(typeof(List<List<int>>)), new(typeof(long)), new(typeof(string)), new(typeof(short))
-    };
+        new(typeof(List<List<int>>)), new(typeof(long)), new(typeof(string))
+        };
 
         [Test]
         [TestCaseSource(nameof(_dataTypes))]
@@ -36,6 +36,16 @@ namespace Tests
                 Assert.That(myObject.Text, Is.Not.EqualTo(myObject.Text.GetType().DefaultValue()));
                 Assert.That(myObject.Check, Is.Not.EqualTo(myObject.Check.GetType().DefaultValue()));
                 Assert.That(A.Static, Is.EqualTo(0));
+            });
+        }
+        [Test]
+        public void Faker_Module_RealizationNotDefault()
+        {
+            var myObject = _faker.Create<B>();
+            Assert.Multiple(() =>
+            {
+                Assert.That(myObject.Number, Is.EqualTo(myObject.Number.GetType().DefaultValue()));
+                Assert.That(myObject.C, Is.EqualTo(myObject.C.GetType().DefaultValue()));
             });
         }
 

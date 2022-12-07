@@ -10,5 +10,7 @@ namespace Core.Intefaces
     {
         T Create<T>();
         object Create(Type type);
+
+        object GenerateViaDll(Type t);
     }
 }
