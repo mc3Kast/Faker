@@ -9,7 +9,7 @@ namespace Core.Generators
 {
     public class CharGenerator : IGenerator
     {
-        private readonly char[] _chars = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+        private readonly char[] _chars = "$%#@!*abcdefghijklmnopqrstuvwxyz1234567890?;:ABCDEFGHIJKLMNOPQRSTUVWXYZ^&".ToCharArray();
         public object Generate(Type type, GeneratorContext context)
         {
             return _chars[context.Random.Next(0, _chars.Length)];
